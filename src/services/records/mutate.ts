@@ -1,0 +1,102 @@
+import { SignIn } from '@/types/data-types'
+import { AicClientAuth } from '../auth/get-token'
+import { AicClientIo } from '../utils/io'
+
+// Services
+const aicClientAuth = new AicClientAuth()
+const aicClientUtils = new AicClientIo()
+
+// Class
+export class AicClientMutateRecords {
+
+  // Consts
+  clName = 'AicClientMutateRecords'
+
+  // Code
+  async delete(
+          signIn: SignIn,
+          userProfileId: string,
+          entityId: string,
+          where: any = undefined) {
+
+    // Debug
+    const fnName = `${this.clName}.delete()`
+
+    // Get a token
+    const token = await aicClientAuth.getToken(signIn)
+
+    // Define the body JSON for the chat message
+    var body: any = {
+      userProfileId: userProfileId,
+      projectEnvId: signIn.projectEnvId,
+      entityId: entityId
+    }
+
+    if (where != null) {
+      body.where = JSON.stringify(where)
+    }
+
+    // Try to fetch
+    return await aicClientUtils.fetch(
+                   '/v1/records/delete',
+                   body,
+                   token,
+                   signIn.baseUrl)
+  }
+
+  async load(
+          signIn: SignIn,
+          userProfileId: string,
+          entityId: string,
+          record: any) {
+
+    // Debug
+    const fnName = `${this.clName}.load()`
+
+    // Get a token
+    const token = await aicClientAuth.getToken(signIn)
+
+    // Define the body JSON for the chat message
+    var body: any = {
+      userProfileId: userProfileId,
+      projectEnvId: signIn.projectEnvId,
+      entityId: entityId,
+      record: record
+    }
+
+    // Try to fetch
+    return await aicClientUtils.fetch(
+                   '/v1/records/load',
+                   body,
+                   token,
+                   signIn.baseUrl)
+  }
+
+  async loadMany(
+          signIn: SignIn,
+          userProfileId: string,
+          entityId: string,
+          records: any[]) {
+
+    // Debug
+    const fnName = `${this.clName}.loadMany()`
+
+    // Get a token
+    const token = await aicClientAuth.getToken(signIn)
+
+    // Define the body JSON for the chat message
+    var body: any = {
+      userProfileId: userProfileId,
+      projectEnvId: signIn.projectEnvId,
+      entityId: entityId,
+      records: records
+    }
+
+    // Try to fetch
+    return await aicClientUtils.fetch(
+                   '/v1/records/load-many',
+                   body,
+                   token,
+                   signIn.baseUrl)
+  }
+}

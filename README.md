@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Construx TypeScript client
 
-## Getting Started
+This is the official TypeScript client for [AI Construx](https://aiconstrux.com).
+It can also be used in JavaScript projects.
 
-First, run the development server:
+If the language you're using isn't supported yet you'll have to call the REST
+API directly.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+There are also [docs for AI Construx](https://docs.aiconstrux.com/docs)
+available.
+
+
+## Getting started
+
+First, create a project in AI Construx. The project page has ids for the
+project environment and your user profile id.
+
+From the project page there's an API key link at the top-right. Create an API
+key, and note its secret (displayed when the API key is created).
+
+Install this TypeScript client using npm:
+
+```sh
+npm install @aiconstrux/client
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
