@@ -25,7 +25,7 @@
   },
   "description": "AiConstrux TypeScript Client",
   "main": "dist/index.js",
-  "types": "dist/types.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jfilby/AicTypeScriptClient.git"
