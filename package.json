@@ -1,6 +1,6 @@
 {
   "name": "@aiconstrux/client",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "tsup src/index.ts --dts --format esm,cjs --out-dir dist",
