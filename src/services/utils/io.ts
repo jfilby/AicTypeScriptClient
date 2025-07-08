@@ -23,7 +23,7 @@ export class AicClientIo {
     }
 
     // Determine URL
-    const aicServer = baseUrl == null ? 'api.aiconstrux.com' : baseUrl
+    const aicServer = baseUrl == null ? 'https://api.aiconstrux.com' : baseUrl
     const serverPath = `${aicServer}${path}`
 
     // Debug
