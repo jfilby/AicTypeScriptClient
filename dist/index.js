@@ -74,7 +74,7 @@ var AicClientIo = class {
     if (token != null) {
       headers["Authorization"] = `Bearer ${token}`;
     }
-    const aicServer = baseUrl == null ? "api.aiconstrux.com" : baseUrl;
+    const aicServer = baseUrl == null ? "https://api.aiconstrux.com" : baseUrl;
     const serverPath = `${aicServer}${path}`;
     try {
       const response = await fetch(
