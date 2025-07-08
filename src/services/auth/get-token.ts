@@ -17,14 +17,19 @@ export class AicClientAuth {
   clName = 'AicClientAuth'
 
   // Code
-  async getToken(signIn: SignIn) {
+  async getToken(signIn: SignIn): Promise<string> {
 
     // Debug
     const fnName = `${this.clName}.getToken()`
 
     // Is there a cached token?
     if (tokenCache.has(tokenCacheKey)) {
-      return tokenCache.get(tokenCacheKey)
+
+      const token = tokenCache.get(tokenCacheKey)
+
+      if (typeof token === 'string') {
+        return token
+      }
     }
 
     // Body
