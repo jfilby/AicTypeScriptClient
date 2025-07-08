@@ -1,4 +1,4 @@
-import { SignIn } from '@/types/data-types'
+import { LoadOptions, SignIn } from '@/types/data-types'
 import { AicClientAuth } from '../auth/get-token'
 import { AicClientIo } from '../utils/io'
 
@@ -47,7 +47,8 @@ export class AicClientMutateRecords {
   async load(
           signIn: SignIn,
           userProfileId: string,
-          record: any) {
+          record: any,
+          options: LoadOptions | undefined = undefined) {
 
     // Debug
     const fnName = `${this.clName}.load()`
@@ -59,7 +60,8 @@ export class AicClientMutateRecords {
     var body: any = {
       userProfileId: userProfileId,
       projectEnvId: signIn.projectEnvId,
-      record: record
+      record: record,
+      options: options
     }
 
     // Try to fetch
@@ -73,7 +75,8 @@ export class AicClientMutateRecords {
   async loadMany(
           signIn: SignIn,
           userProfileId: string,
-          records: any[]) {
+          records: any[],
+          options: LoadOptions | undefined = undefined) {
 
     // Debug
     const fnName = `${this.clName}.loadMany()`
@@ -85,7 +88,8 @@ export class AicClientMutateRecords {
     var body: any = {
       userProfileId: userProfileId,
       projectEnvId: signIn.projectEnvId,
-      records: records
+      records: records,
+      options: options
     }
 
     // Try to fetch

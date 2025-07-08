@@ -1,20 +1,3 @@
-export interface SignIn {
-  apiKey: string
-  secret: string
-  projectEnvId: string
-  baseUrl?: string | undefined
-}
-
-export interface AicFilter {
-  entity: string  // Fully-qualified entity name
-  where: any      // Map of fields to values
-}
-
-export interface ChatMessage {
-  type: string
-  text: string
-}
-
 export class BaseDataTypes {
 
   // Statuses
@@ -55,4 +38,30 @@ export class BaseDataTypes {
     'N': 'New',
     'P': 'Delete pending'
   }
+}
+
+export interface SignIn {
+  apiKey: string
+  secret: string
+  projectEnvId: string
+  baseUrl?: string | undefined
+}
+
+export interface AicFilter {
+  entity: string  // Fully-qualified entity name
+  where: any      // Map of fields to values
+}
+
+export interface ChatMessage {
+  type: string
+  text: string
+}
+
+export enum FieldDoesntExistOption {
+  strict = 'strict',
+  ignore = 'ignore'
+}
+
+export interface LoadOptions {
+  onFieldDoesntExistValues?: FieldDoesntExistOption
 }

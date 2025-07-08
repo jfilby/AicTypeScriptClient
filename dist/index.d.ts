@@ -1,3 +1,16 @@
+declare class BaseDataTypes {
+    static activeStatus: string;
+    static deletePendingStatus: string;
+    static deletedStatus: string;
+    static inactiveStatus: string;
+    static inProgressStatus: string;
+    static newStatus: string;
+    static userSelectableStatuses: {
+        value: string;
+        name: string;
+    }[];
+    static userSelectableStatusesMap: Record<string, string>;
+}
 interface SignIn {
     apiKey: string;
     secret: string;
@@ -12,18 +25,12 @@ interface ChatMessage {
     type: string;
     text: string;
 }
-declare class BaseDataTypes {
-    static activeStatus: string;
-    static deletePendingStatus: string;
-    static deletedStatus: string;
-    static inactiveStatus: string;
-    static inProgressStatus: string;
-    static newStatus: string;
-    static userSelectableStatuses: {
-        value: string;
-        name: string;
-    }[];
-    static userSelectableStatusesMap: Record<string, string>;
+declare enum FieldDoesntExistOption {
+    strict = "strict",
+    ignore = "ignore"
+}
+interface LoadOptions {
+    onFieldDoesntExistValues?: FieldDoesntExistOption;
 }
 
 declare class AicClientAuth {
@@ -39,8 +46,8 @@ declare class AicClientChat {
 declare class AicClientMutateRecords {
     clName: string;
     delete(signIn: SignIn, userProfileId: string, entityId: string, where?: any): Promise<any>;
-    load(signIn: SignIn, userProfileId: string, record: any): Promise<any>;
-    loadMany(signIn: SignIn, userProfileId: string, records: any[]): Promise<any>;
+    load(signIn: SignIn, userProfileId: string, record: any, options?: LoadOptions | undefined): Promise<any>;
+    loadMany(signIn: SignIn, userProfileId: string, records: any[], options?: LoadOptions | undefined): Promise<any>;
 }
 
 declare class AicClientQueryRecords {
@@ -50,4 +57,4 @@ declare class AicClientQueryRecords {
     getById(signIn: SignIn, userProfileId: string, entityId: string, id: string): Promise<any>;
 }
 
-export { AicClientAuth, AicClientChat, AicClientMutateRecords, AicClientQueryRecords, type AicFilter, BaseDataTypes, type ChatMessage, type SignIn };
+export { AicClientAuth, AicClientChat, AicClientMutateRecords, AicClientQueryRecords, type AicFilter, BaseDataTypes, type ChatMessage, FieldDoesntExistOption, type LoadOptions, type SignIn };

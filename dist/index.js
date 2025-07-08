@@ -34,7 +34,8 @@ __export(index_exports, {
   AicClientChat: () => AicClientChat,
   AicClientMutateRecords: () => AicClientMutateRecords,
   AicClientQueryRecords: () => AicClientQueryRecords,
-  BaseDataTypes: () => BaseDataTypes
+  BaseDataTypes: () => BaseDataTypes,
+  FieldDoesntExistOption: () => FieldDoesntExistOption
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -196,13 +197,14 @@ var AicClientMutateRecords = class {
       signIn.baseUrl
     );
   }
-  async load(signIn, userProfileId, record) {
+  async load(signIn, userProfileId, record, options = void 0) {
     const fnName = `${this.clName}.load()`;
     const token = await aicClientAuth2.getToken(signIn);
     var body = {
       userProfileId,
       projectEnvId: signIn.projectEnvId,
-      record
+      record,
+      options
     };
     return await aicClientUtils3.fetch(
       "/v1/records/load",
@@ -211,13 +213,14 @@ var AicClientMutateRecords = class {
       signIn.baseUrl
     );
   }
-  async loadMany(signIn, userProfileId, records) {
+  async loadMany(signIn, userProfileId, records, options = void 0) {
     const fnName = `${this.clName}.loadMany()`;
     const token = await aicClientAuth2.getToken(signIn);
     var body = {
       userProfileId,
       projectEnvId: signIn.projectEnvId,
-      records
+      records,
+      options
     };
     return await aicClientUtils3.fetch(
       "/v1/records/load-many",
@@ -315,11 +318,17 @@ BaseDataTypes.userSelectableStatusesMap = {
   "N": "New",
   "P": "Delete pending"
 };
+var FieldDoesntExistOption = /* @__PURE__ */ ((FieldDoesntExistOption2) => {
+  FieldDoesntExistOption2["strict"] = "strict";
+  FieldDoesntExistOption2["ignore"] = "ignore";
+  return FieldDoesntExistOption2;
+})(FieldDoesntExistOption || {});
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   AicClientAuth,
   AicClientChat,
   AicClientMutateRecords,
   AicClientQueryRecords,
-  BaseDataTypes
+  BaseDataTypes,
+  FieldDoesntExistOption
 });
