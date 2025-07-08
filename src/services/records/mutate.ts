@@ -47,7 +47,6 @@ export class AicClientMutateRecords {
   async load(
           signIn: SignIn,
           userProfileId: string,
-          entityId: string,
           record: any) {
 
     // Debug
@@ -60,7 +59,6 @@ export class AicClientMutateRecords {
     var body: any = {
       userProfileId: userProfileId,
       projectEnvId: signIn.projectEnvId,
-      entityId: entityId,
       record: record
     }
 
@@ -75,7 +73,6 @@ export class AicClientMutateRecords {
   async loadMany(
           signIn: SignIn,
           userProfileId: string,
-          entityId: string,
           records: any[]) {
 
     // Debug
@@ -88,7 +85,6 @@ export class AicClientMutateRecords {
     var body: any = {
       userProfileId: userProfileId,
       projectEnvId: signIn.projectEnvId,
-      entityId: entityId,
       records: records
     }
 
