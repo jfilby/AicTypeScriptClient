@@ -112,7 +112,10 @@ var AicClientAuth = class {
   async getToken(signIn) {
     const fnName = `${this.clName}.getToken()`;
     if (tokenCache.has(tokenCacheKey)) {
-      return tokenCache.get(tokenCacheKey);
+      const token2 = tokenCache.get(tokenCacheKey);
+      if (typeof token2 === "string") {
+        return token2;
+      }
     }
     const body = {
       key: signIn.apiKey,
@@ -193,13 +196,12 @@ var AicClientMutateRecords = class {
       signIn.baseUrl
     );
   }
-  async load(signIn, userProfileId, entityId, record) {
+  async load(signIn, userProfileId, record) {
     const fnName = `${this.clName}.load()`;
     const token = await aicClientAuth2.getToken(signIn);
     var body = {
       userProfileId,
       projectEnvId: signIn.projectEnvId,
-      entityId,
       record
     };
     return await aicClientUtils3.fetch(
@@ -209,13 +211,12 @@ var AicClientMutateRecords = class {
       signIn.baseUrl
     );
   }
-  async loadMany(signIn, userProfileId, entityId, records) {
+  async loadMany(signIn, userProfileId, records) {
     const fnName = `${this.clName}.loadMany()`;
     const token = await aicClientAuth2.getToken(signIn);
     var body = {
       userProfileId,
       projectEnvId: signIn.projectEnvId,
-      entityId,
       records
     };
     return await aicClientUtils3.fetch(

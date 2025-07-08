@@ -28,7 +28,7 @@ declare class BaseDataTypes {
 
 declare class AicClientAuth {
     clName: string;
-    getToken(signIn: SignIn): Promise<any>;
+    getToken(signIn: SignIn): Promise<string>;
 }
 
 declare class AicClientChat {
@@ -39,8 +39,8 @@ declare class AicClientChat {
 declare class AicClientMutateRecords {
     clName: string;
     delete(signIn: SignIn, userProfileId: string, entityId: string, where?: any): Promise<any>;
-    load(signIn: SignIn, userProfileId: string, entityId: string, record: any): Promise<any>;
-    loadMany(signIn: SignIn, userProfileId: string, entityId: string, records: any[]): Promise<any>;
+    load(signIn: SignIn, userProfileId: string, record: any): Promise<any>;
+    loadMany(signIn: SignIn, userProfileId: string, records: any[]): Promise<any>;
 }
 
 declare class AicClientQueryRecords {
