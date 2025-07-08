@@ -34,6 +34,7 @@ __export(index_exports, {
   AicClientChat: () => AicClientChat,
   AicClientMutateRecords: () => AicClientMutateRecords,
   AicClientQueryRecords: () => AicClientQueryRecords,
+  AicIncludeEntities: () => AicIncludeEntities,
   BaseDataTypes: () => BaseDataTypes,
   FieldDoesntExistOption: () => FieldDoesntExistOption
 });
@@ -158,8 +159,8 @@ var AicClientChat = class {
       projectEnvId: signIn.projectEnvId,
       agentId,
       chatSessionId,
-      messages,
-      filters
+      filters,
+      messages
     };
     return await aicClientUtils2.fetch(
       "/v1/chat/message",
@@ -318,6 +319,11 @@ BaseDataTypes.userSelectableStatusesMap = {
   "N": "New",
   "P": "Delete pending"
 };
+var AicIncludeEntities = /* @__PURE__ */ ((AicIncludeEntities2) => {
+  AicIncludeEntities2["all"] = "all";
+  AicIncludeEntities2["filtered"] = "filtered";
+  return AicIncludeEntities2;
+})(AicIncludeEntities || {});
 var FieldDoesntExistOption = /* @__PURE__ */ ((FieldDoesntExistOption2) => {
   FieldDoesntExistOption2["strict"] = "strict";
   FieldDoesntExistOption2["ignore"] = "ignore";
@@ -329,6 +335,7 @@ var FieldDoesntExistOption = /* @__PURE__ */ ((FieldDoesntExistOption2) => {
   AicClientChat,
   AicClientMutateRecords,
   AicClientQueryRecords,
+  AicIncludeEntities,
   BaseDataTypes,
   FieldDoesntExistOption
 });

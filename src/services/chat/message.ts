@@ -1,4 +1,4 @@
-import { AicFilter, ChatMessage, SignIn } from '@/types/data-types'
+import { AicFilters, ChatMessage, SignIn } from '@/types/data-types'
 import { AicClientAuth } from '../auth/get-token'
 import { AicClientIo } from '../utils/io'
 
@@ -18,7 +18,7 @@ export class AicClientChat {
           userProfileId: string,
           agentId: string,
           chatSessionId: string | null,
-          filters: AicFilter[],
+          filters: AicFilters,
           messages: ChatMessage[]) {
 
     // Debug
@@ -33,8 +33,8 @@ export class AicClientChat {
       projectEnvId: signIn.projectEnvId,
       agentId: agentId,
       chatSessionId: chatSessionId,
-      messages: messages,
-      filters: filters
+      filters: filters,
+      messages: messages
     }
 
     // Try to fetch

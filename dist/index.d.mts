@@ -17,9 +17,18 @@ interface SignIn {
     projectEnvId: string;
     baseUrl?: string | undefined;
 }
-interface AicFilter {
-    entity: string;
-    where: any;
+interface AicEntityFilter {
+    entityId: string;
+    select?: string[];
+    where?: any;
+}
+declare enum AicIncludeEntities {
+    all = "all",
+    filtered = "filtered"
+}
+interface AicFilters {
+    includeEntities?: AicIncludeEntities;
+    entityFilters: AicEntityFilter[];
 }
 interface ChatMessage {
     type: string;
@@ -40,7 +49,7 @@ declare class AicClientAuth {
 
 declare class AicClientChat {
     clName: string;
-    message(signIn: SignIn, userProfileId: string, agentId: string, chatSessionId: string | null, filters: AicFilter[], messages: ChatMessage[]): Promise<any>;
+    message(signIn: SignIn, userProfileId: string, agentId: string, chatSessionId: string | null, filters: AicFilters, messages: ChatMessage[]): Promise<any>;
 }
 
 declare class AicClientMutateRecords {
@@ -57,4 +66,4 @@ declare class AicClientQueryRecords {
     getById(signIn: SignIn, userProfileId: string, entityId: string, id: string): Promise<any>;
 }
 
-export { AicClientAuth, AicClientChat, AicClientMutateRecords, AicClientQueryRecords, type AicFilter, BaseDataTypes, type ChatMessage, FieldDoesntExistOption, type LoadOptions, type SignIn };
+export { AicClientAuth, AicClientChat, AicClientMutateRecords, AicClientQueryRecords, type AicEntityFilter, type AicFilters, AicIncludeEntities, BaseDataTypes, type ChatMessage, FieldDoesntExistOption, type LoadOptions, type SignIn };

@@ -47,9 +47,20 @@ export interface SignIn {
   baseUrl?: string | undefined
 }
 
-export interface AicFilter {
-  entity: string  // Fully-qualified entity name
-  where: any      // Map of fields to values
+export interface AicEntityFilter {
+  entityId: string
+  select?: string[]  // Fields to include
+  where?: any        // Filter by map of fields to values
+}
+
+export enum AicIncludeEntities {
+  all = 'all',
+  filtered = 'filtered'
+}
+
+export interface AicFilters {
+  includeEntities?: AicIncludeEntities
+  entityFilters: AicEntityFilter[]
 }
 
 export interface ChatMessage {
