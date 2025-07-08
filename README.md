@@ -24,3 +24,13 @@ Install this TypeScript client using npm:
 npm install @aiconstrux/client
 ```
 
+
+## Building
+
+This section is for developers of this NPM only.
+
+1. Build with `npm run build`.
+2. Commit changes to git and push to the repo.
+3. Inc the version by major/minor/patch, e.g. `npm version patch`.
+4. Publish the npm with `npm publish`.
+
