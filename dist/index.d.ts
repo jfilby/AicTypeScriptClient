@@ -55,8 +55,7 @@ declare class AicClientChat {
 declare class AicClientMutateRecords {
     clName: string;
     delete(signIn: SignIn, userProfileId: string, entityId: string, where?: any): Promise<any>;
-    load(signIn: SignIn, userProfileId: string, record: any, options?: LoadOptions | undefined): Promise<any>;
-    loadMany(signIn: SignIn, userProfileId: string, records: any[], options?: LoadOptions | undefined): Promise<any>;
+    load(signIn: SignIn, userProfileId: string, records: any[], options?: LoadOptions | undefined): Promise<any>;
 }
 
 declare class AicClientQueryRecords {

@@ -198,24 +198,8 @@ var AicClientMutateRecords = class {
       signIn.baseUrl
     );
   }
-  async load(signIn, userProfileId, record, options = void 0) {
+  async load(signIn, userProfileId, records, options = void 0) {
     const fnName = `${this.clName}.load()`;
-    const token = await aicClientAuth2.getToken(signIn);
-    var body = {
-      userProfileId,
-      projectEnvId: signIn.projectEnvId,
-      record,
-      options
-    };
-    return await aicClientUtils3.fetch(
-      "/v1/records/load",
-      body,
-      token,
-      signIn.baseUrl
-    );
-  }
-  async loadMany(signIn, userProfileId, records, options = void 0) {
-    const fnName = `${this.clName}.loadMany()`;
     const token = await aicClientAuth2.getToken(signIn);
     var body = {
       userProfileId,
@@ -224,7 +208,7 @@ var AicClientMutateRecords = class {
       options
     };
     return await aicClientUtils3.fetch(
-      "/v1/records/load-many",
+      "/v1/records/load",
       body,
       token,
       signIn.baseUrl

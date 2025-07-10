@@ -47,39 +47,11 @@ export class AicClientMutateRecords {
   async load(
           signIn: SignIn,
           userProfileId: string,
-          record: any,
-          options: LoadOptions | undefined = undefined) {
-
-    // Debug
-    const fnName = `${this.clName}.load()`
-
-    // Get a token
-    const token = await aicClientAuth.getToken(signIn)
-
-    // Define the body JSON for the chat message
-    var body: any = {
-      userProfileId: userProfileId,
-      projectEnvId: signIn.projectEnvId,
-      record: record,
-      options: options
-    }
-
-    // Try to fetch
-    return await aicClientUtils.fetch(
-                   '/v1/records/load',
-                   body,
-                   token,
-                   signIn.baseUrl)
-  }
-
-  async loadMany(
-          signIn: SignIn,
-          userProfileId: string,
           records: any[],
           options: LoadOptions | undefined = undefined) {
 
     // Debug
-    const fnName = `${this.clName}.loadMany()`
+    const fnName = `${this.clName}.load()`
 
     // Get a token
     const token = await aicClientAuth.getToken(signIn)
@@ -94,7 +66,7 @@ export class AicClientMutateRecords {
 
     // Try to fetch
     return await aicClientUtils.fetch(
-                   '/v1/records/load-many',
+                   '/v1/records/load',
                    body,
                    token,
                    signIn.baseUrl)
