@@ -47,6 +47,12 @@ declare class AicClientAuth {
     getToken(signIn: SignIn): Promise<string>;
 }
 
+declare class AicClientBatchChat {
+    clName: string;
+    batchMessage(signIn: SignIn, userProfileId: string, agentId: string, chatSessionId: string | null, filters: AicFilters, messages: ChatMessage[]): Promise<any>;
+    getBatchMessage(signIn: SignIn, userProfileId: string, batchJobId: string): Promise<any>;
+}
+
 declare class AicClientChat {
     clName: string;
     message(signIn: SignIn, userProfileId: string, agentId: string, chatSessionId: string | null, filters: AicFilters, messages: ChatMessage[]): Promise<any>;
@@ -65,4 +71,4 @@ declare class AicClientQueryRecords {
     getById(signIn: SignIn, userProfileId: string, entityId: string, id: string): Promise<any>;
 }
 
-export { AicClientAuth, AicClientChat, AicClientMutateRecords, AicClientQueryRecords, type AicEntityFilter, type AicFilters, AicIncludeEntities, BaseDataTypes, type ChatMessage, FieldDoesntExistOption, type LoadOptions, type SignIn };
+export { AicClientAuth, AicClientBatchChat, AicClientChat, AicClientMutateRecords, AicClientQueryRecords, type AicEntityFilter, type AicFilters, AicIncludeEntities, BaseDataTypes, type ChatMessage, FieldDoesntExistOption, type LoadOptions, type SignIn };

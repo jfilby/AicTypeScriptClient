@@ -100,17 +100,17 @@ var AicClientAuth = class {
   }
 };
 
-// src/services/chat/message.ts
+// src/services/chat/batch-message.ts
 var aicClientAuth = new AicClientAuth();
 var aicClientUtils2 = new AicClientIo();
-var AicClientChat = class {
+var AicClientBatchChat = class {
   constructor() {
     // Consts
-    this.clName = "AicClientChat";
+    this.clName = "AicClientBatchChat";
   }
   // Code
-  async message(signIn, userProfileId, agentId, chatSessionId, filters, messages) {
-    const fnName = `${this.clName}.message()`;
+  async batchMessage(signIn, userProfileId, agentId, chatSessionId, filters, messages) {
+    const fnName = `${this.clName}.batchMessage()`;
     const token = await aicClientAuth.getToken(signIn);
     const body = {
       userProfileId,
@@ -121,6 +121,48 @@ var AicClientChat = class {
       messages
     };
     return await aicClientUtils2.fetch(
+      "/v1/chat/batch-message",
+      body,
+      token,
+      signIn.baseUrl
+    );
+  }
+  async getBatchMessage(signIn, userProfileId, batchJobId) {
+    const fnName = `${this.clName}.getBatchMessage()`;
+    const token = await aicClientAuth.getToken(signIn);
+    const body = {
+      userProfileId
+    };
+    return await aicClientUtils2.fetch(
+      `/v1/chat/batch-message/${batchJobId}`,
+      body,
+      token,
+      signIn.baseUrl
+    );
+  }
+};
+
+// src/services/chat/message.ts
+var aicClientAuth2 = new AicClientAuth();
+var aicClientUtils3 = new AicClientIo();
+var AicClientChat = class {
+  constructor() {
+    // Consts
+    this.clName = "AicClientChat";
+  }
+  // Code
+  async message(signIn, userProfileId, agentId, chatSessionId, filters, messages) {
+    const fnName = `${this.clName}.message()`;
+    const token = await aicClientAuth2.getToken(signIn);
+    const body = {
+      userProfileId,
+      projectEnvId: signIn.projectEnvId,
+      agentId,
+      chatSessionId,
+      filters,
+      messages
+    };
+    return await aicClientUtils3.fetch(
       "/v1/chat/message",
       body,
       token,
@@ -130,8 +172,8 @@ var AicClientChat = class {
 };
 
 // src/services/records/mutate.ts
-var aicClientAuth2 = new AicClientAuth();
-var aicClientUtils3 = new AicClientIo();
+var aicClientAuth3 = new AicClientAuth();
+var aicClientUtils4 = new AicClientIo();
 var AicClientMutateRecords = class {
   constructor() {
     // Consts
@@ -140,7 +182,7 @@ var AicClientMutateRecords = class {
   // Code
   async delete(signIn, userProfileId, entityId, where = void 0) {
     const fnName = `${this.clName}.delete()`;
-    const token = await aicClientAuth2.getToken(signIn);
+    const token = await aicClientAuth3.getToken(signIn);
     var body = {
       userProfileId,
       projectEnvId: signIn.projectEnvId,
@@ -149,7 +191,7 @@ var AicClientMutateRecords = class {
     if (where != null) {
       body.where = JSON.stringify(where);
     }
-    return await aicClientUtils3.fetch(
+    return await aicClientUtils4.fetch(
       "/v1/records/delete",
       body,
       token,
@@ -158,14 +200,14 @@ var AicClientMutateRecords = class {
   }
   async load(signIn, userProfileId, records, options = void 0) {
     const fnName = `${this.clName}.load()`;
-    const token = await aicClientAuth2.getToken(signIn);
+    const token = await aicClientAuth3.getToken(signIn);
     var body = {
       userProfileId,
       projectEnvId: signIn.projectEnvId,
       records,
       options
     };
-    return await aicClientUtils3.fetch(
+    return await aicClientUtils4.fetch(
       "/v1/records/load",
       body,
       token,
@@ -175,8 +217,8 @@ var AicClientMutateRecords = class {
 };
 
 // src/services/records/query.ts
-var aicClientAuth3 = new AicClientAuth();
-var aicClientUtils4 = new AicClientIo();
+var aicClientAuth4 = new AicClientAuth();
+var aicClientUtils5 = new AicClientIo();
 var AicClientQueryRecords = class {
   constructor() {
     // Consts
@@ -185,7 +227,7 @@ var AicClientQueryRecords = class {
   // Code
   async filter(signIn, userProfileId, entityId, where = void 0, orderBy = void 0) {
     const fnName = `${this.clName}.filter()`;
-    const token = await aicClientAuth3.getToken(signIn);
+    const token = await aicClientAuth4.getToken(signIn);
     var body = {
       userProfileId,
       projectEnvId: signIn.projectEnvId,
@@ -197,7 +239,7 @@ var AicClientQueryRecords = class {
     if (orderBy != null) {
       body.orderBy = JSON.stringify(orderBy);
     }
-    return await aicClientUtils4.fetch(
+    return await aicClientUtils5.fetch(
       "/v1/records/filter",
       body,
       token,
@@ -206,14 +248,14 @@ var AicClientQueryRecords = class {
   }
   async getById(signIn, userProfileId, entityId, id) {
     const fnName = `${this.clName}.getById()`;
-    const token = await aicClientAuth3.getToken(signIn);
+    const token = await aicClientAuth4.getToken(signIn);
     var body = {
       userProfileId,
       projectEnvId: signIn.projectEnvId,
       entityId,
       id
     };
-    return await aicClientUtils4.fetch(
+    return await aicClientUtils5.fetch(
       "/v1/records/get-by-id",
       body,
       token,
@@ -273,6 +315,7 @@ var FieldDoesntExistOption = /* @__PURE__ */ ((FieldDoesntExistOption2) => {
 })(FieldDoesntExistOption || {});
 export {
   AicClientAuth,
+  AicClientBatchChat,
   AicClientChat,
   AicClientMutateRecords,
   AicClientQueryRecords,

@@ -29,9 +29,10 @@ npm install @aiconstrux/client
 
 This section is for developers of this NPM only.
 
-1. Build with `npm run build`.
-2. Commit changes to git.
-3. Inc the version by major/minor/patch, e.g. `npm version patch`.
-4. Push changes to the repo (includes the version change).
-5. Publish the npm with `npm publish`.
+1. Ensure any new files are exported from `index.ts`.
+2. Build with `npm run build`.
+3. Commit changes to git.
+4. Inc the version by major/minor/patch, e.g. `npm version patch`.
+5. Push changes to the repo (includes the version change).
+6. Publish the npm with `npm publish`.
 
